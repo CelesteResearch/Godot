@@ -1,0 +1,9 @@
+.godot/
+.mono/
+bin/
+obj/
+/Native/
+/Saves/
+/Backups/
+/log.txt
+/dev/null
