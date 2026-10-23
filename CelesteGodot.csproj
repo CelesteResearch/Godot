@@ -1,0 +1,22 @@
+<Project Sdk="Godot.NET.Sdk/4.5.1">
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <LangVersion>latest</LangVersion>
+        <Nullable>enable</Nullable>
+        <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    </PropertyGroup>
+    <Import
+        Project=".godot/SharedAssemblies/SharedAssemblies.props"
+        Condition="Exists('.godot/SharedAssemblies/SharedAssemblies.props')"
+    />
+    <ItemGroup>
+        <Compile Include="Scripts/Runtime/**/*.cs" />
+    </ItemGroup>
+    <Target Name="RequireSharedAssemblyReferences" BeforeTargets="ResolveReferences">
+        <Error
+            Condition="!Exists('.godot/SharedAssemblies/SharedAssemblies.props')"
+            Text="Run Tools/Sync-SharedAssemblies.ps1 after building Shared Release before compiling the Godot host."
+        />
+    </Target>
+</Project>
